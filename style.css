@@ -1,0 +1,21 @@
+body {
+  text-align: center;
+}
+#app {
+  height: 924px;
+  width: 800px;
+  margin: auto;
+}
+
+.cell {
+  display: block;
+  float: left;
+  border-radius: 50%;
+  border: 1px solid black;
+  margin: 1px;
+  box-sizing: border-box;
+}
+
+#counter {
+  text-align: center;
+}
