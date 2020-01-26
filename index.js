@@ -8,6 +8,8 @@ const colorPickerDeadCell = document.getElementById('dead');
 const btnStart = document.querySelector('.btn-start');
 const btnContinue = document.querySelector('.btn-continue');
 const btnStop = document.querySelector('.btn-stop');
+const numOfRowsElem = document.querySelector('#x-dimension');
+const numOfColsElem = document.querySelector('#y-dimension');
 
 let canvasSize = 600;
 canvas.clientWidth = `${canvasSize}px`;
@@ -15,28 +17,6 @@ canvas.clientHeight = `${canvasSize}px`;
 canvas.style.width = `${canvasSize}px`;
 canvas.style.height = `${canvasSize}px`;
 let ctx = canvas.getContext('2d');
-
-const initialStates = [1, 2, 3, 4, 5, 6];
-let choosenState;
-
-let time = 0;
-let interval;
-
-Array.prototype.forEach.call(initialStateElements, (state, index) => {
-  state.addEventListener('click', (e) => {
-    choosenState = initialStates[index];
-    time = 0;
-    interval = setInterval(() => {
-      counter.textContent = `${++time}`;
-      loop();
-    }, 400);
-  });
-
-});
-
-let size = 56;
-let SPEED = 400;
-let t = 3000;
 
 let COLOR_ALIVE = colorPickerAliveCell.defaultValue;
 let COLOR_DEAD = colorPickerDeadCell.defaultValue;
@@ -49,13 +29,14 @@ colorPickerDeadCell.addEventListener('change', (e) => {
   COLOR_DEAD = e.target.value;
 });
 
+
 class Cell {
-  constructor(size) {
-    this.width = canvasSize / size;
-    this.height = canvasSize / size;
-    this.state = (Math.random() < 0.50) ? 'dead' : 'alive';
-    this.newState = (Math.random() < 0.50) ? 'dead' : 'alive';
-    this.color = this.state == 'dead' ? COLOR_DEAD : COLOR_ALIVE;
+  constructor(xSize, ySize, alive) {
+    this.width = canvasSize / xSize;
+    this.height = canvasSize / ySize;
+    this.state = alive;
+    this.newState = this.state;
+    this.color = this.state === 'dead' ? COLOR_DEAD : COLOR_ALIVE;
   }
   getState() {
     return this.state;
@@ -74,15 +55,62 @@ class Cell {
   }
 }
 
+const initialStates = [
+  [10, 10, 12, 10, 12, 9, 12, 11, 11, 11],
+  [10, 10, 11, 9, 12, 9, 13, 9, 14, 9, 14, 10, 14, 11, 13, 12, 10, 12],
+  [10, 10, 11, 10, 10, 11, 13, 12, 13, 13, 12, 13],
+  [10, 10, 11, 10, 11, 11, 16, 9, 15, 11, 16, 11, 17, 11],
+  [10, 10, 9, 12, 10, 12, 12, 11, 13, 12, 14, 12, 15, 12],
+  'random'
+];
+let choosenState;
 
-let grid = [];
+let time = 0;
+let interval;
 
-for (let i = 0; i < size; i++) {
-  grid.push([]);
-  for (let j = 0; j < size; j++) {
-    grid[i].push(new Cell(size));
-  }
-}
+let xSize = 56;
+let ySize = 56;
+let speed = 100;
+let t = 3000;
+
+let grid;
+
+
+
+Array.prototype.forEach.call(initialStateElements, (state, index) => {
+  state.style.background = `url(./images/${index + 1}.png) center no-repeat`;
+  state.addEventListener('click', (e) => {
+    clearInterval(interval);
+    grid = [];
+    for (let i = 0; i < xSize; i++) {
+      grid.push([]);
+      for (let j = 0; j < ySize; j++) {
+        grid[i].push(new Cell(xSize, ySize, 'dead'));
+      }
+    }
+    choosenState = initialStates[index];
+    if (choosenState === 'random') {
+      return console.log('cekaj');
+    }
+    for (let i = 0; i < choosenState.length; i += 2) {
+      grid[choosenState[i]][choosenState[i + 1]].state = 'alive';
+      grid[choosenState[i]][choosenState[i + 1]].newState = 'alive';
+      grid[choosenState[i]][choosenState[i + 1]].color = COLOR_ALIVE;
+    }
+    grid.forEach((row, i) => {
+      row.forEach((cell, j) => {
+        cell.draw(ctx, i * (canvasSize / xSize), j * (canvasSize / ySize));
+      });
+    });
+    time = 0;
+    interval = setInterval(() => {
+      counter.textContent = `${++time}`;
+      loop();
+    }, speed);
+  });
+
+});
+
 
 function loop() {
   grid.forEach((row, i) => {
@@ -92,11 +120,11 @@ function loop() {
         for (let l = -1; l <= 1; l++) {
           let x = i + k;
           let y = j + l;
-          if (x == -1) x = size - 1;
-          if (x == size) x = 0;
+          if (x == -1) x = xSize - 1;
+          if (x == xSize) x = 0;
 
-          if (y == -1) y = size - 1;
-          if (y == size) y = 0;
+          if (y == -1) y = ySize - 1;
+          if (y == ySize) y = 0;
 
           if (grid[x][y].getState() == 'alive') {
             countLiveNeighbours++;
@@ -118,7 +146,7 @@ function loop() {
   grid.forEach((row, i) => {
     row.forEach((cell, j) => {
       cell.updateState();
-      cell.draw(ctx, i * (canvasSize / size), j * (canvasSize / size));
+      cell.draw(ctx, i * (canvasSize / xSize), j * (canvasSize / ySize));
     });
   });
 }
@@ -128,11 +156,10 @@ btnContinue.addEventListener('click', () => {
     interval = setInterval(() => {
       counter.textContent = `${++time}`;
       loop();
-    }, 400);
+    }, speed);
   }
 });
 
 btnStop.addEventListener('click', () => {
   interval = clearInterval(interval);
-  console.log(interval)
 });
