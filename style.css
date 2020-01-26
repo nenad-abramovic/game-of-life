@@ -67,33 +67,24 @@ canvas {
 }
 
 .item-container {
+  display: flex;
   width: 190px;
   line-height: 2em;
   margin: 0 auto;
-}
+  justify-content: space-between;
 
-.item-container label {
-  margin-left: auto;
-}
-
-.item-container input {
-  float: right;
 }
 
 .item-container-dimensions {
+  display: flex;
   width: 145px;
   line-height: 2em;
   margin: 0 auto;
+  justify-content: space-between;
 }
 
 .dimension {
   width: 3em;
-  margin-top: 5px;
-  float: right;
-}
-
-input[type="color"] {
-  margin-top: 5px;
 }
 
 .speed{
