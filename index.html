@@ -10,12 +10,9 @@
 </head>
 
 <body>
-  <h1>Conway's Game of Life</h1>
-  <div class="container">
-    <canvas id="canvas" width="500px" height="500px"></canvas>
-    <p>Iteration: <span id="counter">0</span></p>
-  </div>
-  <div class="container">
+  <header>
+    <h1>Conway's Game of Life</h1>
+    <hr />
     <h2>Pravila</h2>
     <ul>
       <li>Svaka živa ćelija okružena sa manje od 2 žive ćelije umire</li>
@@ -23,34 +20,52 @@
       <li>Svaka živa ćelija okružena sa više od 3 žive ćelije umire</li>
       <li>Mrtva ćelija okružena sa tačno 3 žive ćelije postaje živa</li>
     </ul>
-    <h2>Inicijalni pattern-ovi</h2>
-    <!-- <ul>
-      <li><button>Random</button></li>
-      <li><img
-          src="https://ai2-s2-public.s3.amazonaws.com/figures/2017-08-08/2a7da6c572d70227e1ec76ff8266328e0be443cc/8-Figure1-1.png"
-          alt="" height="50" width="50"></li>
+  </header>
+  <main>
+    <h2>Izaberi inicijalni pattern</h2>
+
+    <ul class="initial-patterns">
+      <li><button class="btn-start">Random</button></li>
       <li><button>2</button></li>
       <li><button>3</button></li>
       <li><button>4</button></li>
       <li><button>5</button></li>
-    </ul> -->
-    <h2>Podešavanja</h2>
-    <div>
-      <h4>Boja ćelije</h4>
-      <label for="alive">Živa ćelija</label>
-      <input type="color" id="alive" value="#000000" />
-      <br />
-      <label for="dead">Mrtva ćelija</label>
-      <input type="color" id="dead" value="#FFFFFF" />
-
-    </div>
-    <button class="btn-start" title="Počni novu simulaciju">Start</button>
-    <button class="btn-continue" title="Nastavi pauziranu simulaciju">Continue</button>
-    <button class="btn-stop" title="Zaustavi simulaciju">Stop</button>
-
+    </ul>
     <hr />
-    <label style="float:right">Sara Ristić 3154/2015</label>
-  </div>
+    <div class="container">
+      <div>
+        <div>
+          <span>Iteracija:</span> <span id="counter">0</span>
+          <button class="btn-stop" title="Zaustavi simulaciju">Zaustavi</button>
+          <button class="btn-continue" title="Nastavi pauziranu simulaciju">Nastavi</button>
+        </div>
+        <canvas id="canvas" width="600px" height="600px"></canvas>
+      </div>
+      <div class="v-line"></div>
+      <div>
+        <h2>Podešavanja</h2>
+        <h4>Dimenzije</h4>
+        <label for="x-dimension">x-osa</label>
+        <input type="number" id="x-dimension" value="256" />
+        <label for="y-dimension">y-osa</label>
+        <input type="number" id="y-dimension" value="256" />
+
+        <h4>Boja ćelije</h4>
+        <label for="alive">Živa ćelija</label>
+        <input type="color" id="alive" value="#000000" />
+        <br />
+        <label for="dead">Mrtva ćelija</label>
+        <input type="color" id="dead" value="#FFFFFF" />
+        <br />
+
+
+      </div>
+    </div>
+    </div>
+  </main>
+  <footer>
+    <label>Sara Ristić 3154/2015</label>
+  </footer>
   <script src="index.js"></script>
 </body>
 

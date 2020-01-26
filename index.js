@@ -6,13 +6,13 @@ const btnStart = document.querySelector('.btn-start');
 const btnContinue = document.querySelector('.btn-continue');
 const btnStop = document.querySelector('.btn-stop');
 
-let canvasSize = 500;
+let canvasSize = 600;
 app.clientWidth = `${canvasSize}px`;
 app.clientHeight = `${canvasSize}px`;
 app.style.width = `${canvasSize}px`;
 app.style.height = `${canvasSize}px`;
 let ctx = app.getContext('2d');
-let size = 256;
+let size = 56;
 let SPEED = 400;
 let t = 3000;
 
