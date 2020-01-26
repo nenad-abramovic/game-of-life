@@ -11,6 +11,9 @@ const btnStop = document.querySelector('.btn-stop');
 const numOfRowsElem = document.querySelector('#x-dimension');
 const numOfColsElem = document.querySelector('#y-dimension');
 
+const boundaryConditionElem = document.querySelector('#boundary-conditions');
+const speedChangeElem = document.querySelector('#speed');
+
 let canvasSize = 600;
 canvas.clientWidth = `${canvasSize}px`;
 canvas.clientHeight = `${canvasSize}px`;
@@ -66,7 +69,7 @@ const initialStates = [
 let choosenState;
 
 let time = 0;
-let interval;
+let timeout;
 
 let xSize = 56;
 let ySize = 56;
@@ -75,12 +78,14 @@ let t = 3000;
 
 let grid;
 
-
+speedChangeElem.addEventListener('change', (e) => {
+  speed = e.target.value;
+})
 
 Array.prototype.forEach.call(initialStateElements, (state, index) => {
   state.style.background = `url(./images/${index + 1}.png) center no-repeat`;
   state.addEventListener('click', (e) => {
-    clearInterval(interval);
+    clearTimeout(timeout);
     grid = [];
     for (let i = 0; i < xSize; i++) {
       grid.push([]);
@@ -103,10 +108,7 @@ Array.prototype.forEach.call(initialStateElements, (state, index) => {
       });
     });
     time = 0;
-    interval = setInterval(() => {
-      counter.textContent = `${++time}`;
-      loop();
-    }, speed);
+    loop();
   });
 
 });
@@ -120,11 +122,19 @@ function loop() {
         for (let l = -1; l <= 1; l++) {
           let x = i + k;
           let y = j + l;
-          if (x == -1) x = xSize - 1;
-          if (x == xSize) x = 0;
+          if (boundaryConditionElem.checked === true) {
+            if (x == -1) x = xSize - 1;
+            if (x == xSize) x = 0;
 
-          if (y == -1) y = ySize - 1;
-          if (y == ySize) y = 0;
+            if (y == -1) y = ySize - 1;
+            if (y == ySize) y = 0;
+          } else {
+            if (x == -1) continue;
+            if (x == xSize) continue;
+
+            if (y == -1) continue;
+            if (y == ySize) continue;
+          }
 
           if (grid[x][y].getState() == 'alive') {
             countLiveNeighbours++;
@@ -149,17 +159,16 @@ function loop() {
       cell.draw(ctx, i * (canvasSize / xSize), j * (canvasSize / ySize));
     });
   });
+  counter.textContent = `${++time}`;
+  timeout = setTimeout(() => loop(), speed);
 }
 
 btnContinue.addEventListener('click', () => {
-  if (time !== 0 && interval === undefined) {
-    interval = setInterval(() => {
-      counter.textContent = `${++time}`;
-      loop();
-    }, speed);
+  if (time !== 0 && timeout === undefined) {
+    loop();
   }
 });
 
 btnStop.addEventListener('click', () => {
-  interval = clearInterval(interval);
+  timeout = clearTimeout(timeout);
 });
