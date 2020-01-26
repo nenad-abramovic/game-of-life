@@ -91,6 +91,11 @@ canvas {
   margin-top: 5px;
   float: right;
 }
+
+input[type="color"] {
+  margin-top: 5px;
+}
+
 .speed{
     width: 4em;
 } 
