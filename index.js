@@ -117,9 +117,9 @@ Array.prototype.forEach.call(initialStateElements, (state, index) => {
       });
     } else {
       for (let i = 0; i < choosenState.length; i += 2) {
-        grid[choosenState[i]][choosenState[i + 1]].state = 'alive';
-        grid[choosenState[i]][choosenState[i + 1]].newState = 'alive';
-        grid[choosenState[i]][choosenState[i + 1]].color = COLOR_ALIVE;
+        grid[choosenState[i] + ~~(xSize / 2) - 13][choosenState[i + 1] + ~~(ySize / 2) - 12].state = 'alive';
+        grid[choosenState[i] + ~~(xSize / 2) - 13][choosenState[i + 1] + ~~(ySize / 2) - 12].newState = 'alive';
+        grid[choosenState[i] + ~~(xSize / 2) - 13][choosenState[i + 1] + ~~(ySize / 2) - 12].color = COLOR_ALIVE;
       }
     }
     grid.forEach((row, i) => {
