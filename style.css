@@ -2,6 +2,9 @@
   color: rgba(0, 0, 0, 0.665);
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   margin: 0;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
 }
 
 body {
@@ -58,3 +61,38 @@ canvas {
   margin: 0.5em;
 }
 
+.settings {
+  text-align: left;
+}
+
+.dimension {
+  width: 3em;
+}
+.speed{
+    width: 4em;
+} 
+
+input[type="color"] {
+  text-align: right;
+}
+
+footer {
+  text-align: left;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.footer-title, 
+.footer-names {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  line-height: 1.5em;
+}
+
+.footer-title label,
+.footer-names label {
+  width: 100%;
+  text-align: left;
+}

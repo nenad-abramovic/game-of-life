@@ -26,6 +26,7 @@
 
     <ul class="initial-patterns">
       <li><button class="btn-start">Random</button></li>
+      <li><button>1</button></li>
       <li><button>2</button></li>
       <li><button>3</button></li>
       <li><button>4</button></li>
@@ -42,29 +43,43 @@
         <canvas id="canvas" width="600px" height="600px"></canvas>
       </div>
       <div class="v-line"></div>
-      <div>
+      <div class="settings">
         <h2>Podešavanja</h2>
-        <h4>Dimenzije</h4>
-        <label for="x-dimension">x-osa</label>
-        <input type="number" id="x-dimension" value="256" />
-        <label for="y-dimension">y-osa</label>
-        <input type="number" id="y-dimension" value="256" />
-
-        <h4>Boja ćelije</h4>
-        <label for="alive">Živa ćelija</label>
+        <br />
+        <label for="x-dimension">Dimenzije x-ose</label>
+        <input type="number" class="dimension" id="x-dimension" value="256" />
+        <br />
+        <label for="y-dimension">Dimenzije y-ose</label>
+        <input type="number" class="dimension" id="y-dimension" value="256" />
+        <hr />
+        <label for="alive">Boja žive ćelije</label>
         <input type="color" id="alive" value="#000000" />
         <br />
-        <label for="dead">Mrtva ćelija</label>
+        <label for="dead">Boja mrtve ćelije</label>
         <input type="color" id="dead" value="#FFFFFF" />
         <br />
+        <hr />
 
+        <label for="speed">Brzina</label>
+        <input type="number" class="speed" id="speed" Brzinamin="100" step="100" value="400">
+        <span>ms</span>
+        <hr />
 
+        <label for="gr-uslovi">Periodični granični uslovi</label>
+        <input type="checkbox" id="gr-uslovi">
       </div>
     </div>
     </div>
   </main>
   <footer>
-    <label>Sara Ristić 3154/2015</label>
+    <div class="footer-title">
+      <label>Projekat iz predmeta Kompjuterske simulacije u fizici</label>
+      <label>Januar 2020.</label>
+    </div>
+    <div class="footer-names">
+      <label>Profesor: dr Jovan Puzović</label>
+      <label>Student: Sara Ristić, 3154/2015</label>
+    </div>
   </footer>
   <script src="index.js"></script>
 </body>
