@@ -11,7 +11,8 @@ const btnStop = document.querySelector('.btn-stop');
 const numOfRowsElem = document.querySelector('#x-dimension');
 const numOfColsElem = document.querySelector('#y-dimension');
 
-const boundaryConditionElem = document.querySelector('#boundary-conditions');
+const xBoundaryConditionElem = document.querySelector('#x-boundary-conditions');
+const yBoundaryConditionElem = document.querySelector('#y-boundary-conditions');
 const speedChangeElem = document.querySelector('#speed');
 
 let canvasSize = 600;
@@ -136,16 +137,17 @@ function loop() {
         for (let l = -1; l <= 1; l++) {
           let x = i + k;
           let y = j + l;
-          if (boundaryConditionElem.checked === true) {
+          if (xBoundaryConditionElem.checked === true) {
             if (x == -1) x = xSize - 1;
             if (x == xSize) x = 0;
-
-            if (y == -1) y = ySize - 1;
-            if (y == ySize) y = 0;
           } else {
             if (x == -1) continue;
             if (x == xSize) continue;
-
+          }
+          if (yBoundaryConditionElem.checked === true) {
+            if (y == -1) y = ySize - 1;
+            if (y == ySize) y = 0;
+          } else {
             if (y == -1) continue;
             if (y == ySize) continue;
           }
