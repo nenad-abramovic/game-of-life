@@ -24,7 +24,6 @@ let interval;
 
 Array.prototype.forEach.call(initialStateElements, (state, index) => {
   state.addEventListener('click', (e) => {
-    console.log(e.target);
     choosenState = initialStates[index];
     time = 0;
     interval = setInterval(() => {
