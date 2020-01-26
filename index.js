@@ -109,12 +109,18 @@ Array.prototype.forEach.call(initialStateElements, (state, index) => {
     }
     choosenState = initialStates[index];
     if (choosenState === 'random') {
-      return console.log('cekaj');
-    }
-    for (let i = 0; i < choosenState.length; i += 2) {
-      grid[choosenState[i]][choosenState[i + 1]].state = 'alive';
-      grid[choosenState[i]][choosenState[i + 1]].newState = 'alive';
-      grid[choosenState[i]][choosenState[i + 1]].color = COLOR_ALIVE;
+      grid.forEach((row, i) => {
+        row.forEach((cell, j) => {
+          cell.state = Math.random() > 0.2 ? 'dead' : 'alive';
+          cell.color = COLOR_ALIVE;
+        });
+      });
+    } else {
+      for (let i = 0; i < choosenState.length; i += 2) {
+        grid[choosenState[i]][choosenState[i + 1]].state = 'alive';
+        grid[choosenState[i]][choosenState[i + 1]].newState = 'alive';
+        grid[choosenState[i]][choosenState[i + 1]].color = COLOR_ALIVE;
+      }
     }
     grid.forEach((row, i) => {
       row.forEach((cell, j) => {
