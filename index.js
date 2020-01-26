@@ -112,7 +112,8 @@ Array.prototype.forEach.call(initialStateElements, (state, index) => {
       grid.forEach((row, i) => {
         row.forEach((cell, j) => {
           cell.state = Math.random() > 0.2 ? 'dead' : 'alive';
-          cell.color = COLOR_ALIVE;
+          cell.newState = cell.state;
+          cell.color = cell.state === 'dead' ? COLOR_DEAD : COLOR_ALIVE;
         });
       });
     } else {
