@@ -63,7 +63,21 @@ canvas {
 
 .settings {
   text-align: left;
-  line-height: 1.5em;
+  flex: 1;
+}
+
+.item-container {
+  width: 200px;
+  line-height: 2em;
+  margin: 0 auto;
+}
+
+.item-container label {
+  margin-left: auto;
+}
+
+.item-container input {
+  float: right;
 }
 
 .dimension {
@@ -75,6 +89,11 @@ canvas {
 
 input[type="color"] {
   text-align: right;
+}
+
+.second-container {
+  width: fit-content;
+  margin: 0 auto;
 }
 
 footer {

@@ -46,27 +46,34 @@
       <div class="settings">
         <h2>Podešavanja</h2>
         <br />
-        <label for="x-dimension">Broj redova</label>
-        <input type="number" class="dimension" id="x-dimension" value="256" max="256" min="30" />
-        <br />
-        <label for="y-dimension">Broj kolona</label>
-        <input type="number" class="dimension" id="y-dimension" value="256" max="256" min="30" />
+        <div class="item-container">
+          <label for="x-dimension">Broj redova</label>
+          <input type="number" class="dimension" id="x-dimension" value="256" max="256" min="30" />
+        </div>
+        <div class="item-container">
+          <label for="y-dimension">Broj kolona</label>
+          <input type="number" class="dimension" id="y-dimension" value="256" max="256" min="30" />
+        </div>
         <hr />
-        <label for="alive">Boja žive ćelije</label>
-        <input type="color" id="alive" value="#000000" />
-        <br />
-        <label for="dead">Boja mrtve ćelije</label>
-        <input type="color" id="dead" value="#FFFFFF" />
-        <br />
+        <div class="item-container">
+          <label for="alive">Boja žive ćelije</label>
+          <input type="color" id="alive" value="#000000" />
+        </div>
+        <div class="item-container">
+          <label for="dead">Boja mrtve ćelije</label>
+          <input type="color" id="dead" value="#FFFFFF" />
+        </div>
         <hr />
-
-        <label for="speed">Vreme između dve iteracije</label>
-        <input type="number" class="speed" id="speed" min="0" step="10" value="400">
-        <span>ms</span>
+        <div class="second-container">
+          <label for="speed">Vreme između dve iteracije</label>
+          <input type="number" class="speed" id="speed" min="0" step="10" value="400">
+          <span>ms</span>
+        </div>
         <hr />
-
-        <input type="checkbox" id="boundary-conditions" checked />
-        <label for="boundary-conditions">Periodični granični uslovi</label>
+        <div class="second-container">
+          <input type="checkbox" id="boundary-conditions" checked />
+          <label for="boundary-conditions">Periodični granični uslovi</label>
+        </div>
       </div>
     </div>
     </div>
