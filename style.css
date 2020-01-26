@@ -67,7 +67,7 @@ canvas {
 }
 
 .item-container {
-  width: 200px;
+  width: 180px;
   line-height: 2em;
   margin: 0 auto;
 }
@@ -80,16 +80,20 @@ canvas {
   float: right;
 }
 
+.item-container-dimensions {
+  width: 135px;
+  line-height: 2em;
+  margin: 0 auto;
+}
+
 .dimension {
   width: 3em;
+  margin-top: 5px;
+  float: right;
 }
 .speed{
     width: 4em;
 } 
-
-input[type="color"] {
-  text-align: right;
-}
 
 .second-container {
   width: fit-content;
