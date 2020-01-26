@@ -15,22 +15,22 @@
     <hr />
     <h2>Pravila</h2>
     <ul>
-      <li>Svaka živa ćelija okružena sa manje od 2 žive ćelije umire</li>
-      <li>Svaka živa ćelija okružena sa 2 ili 3 žive ćelije preživljava u sledeću generaciju</li>
-      <li>Svaka živa ćelija okružena sa više od 3 žive ćelije umire</li>
-      <li>Mrtva ćelija okružena sa tačno 3 žive ćelije postaje živa</li>
+      <li>Svaka živa ćelija okružena sa manje od 2 žive ćelije umire.</li>
+      <li>Svaka živa ćelija okružena sa 2 ili 3 žive ćelije preživljava u sledeću generaciju.</li>
+      <li>Svaka živa ćelija okružena sa više od 3 žive ćelije umire.</li>
+      <li>Mrtva ćelija okružena sa tačno 3 žive ćelije postaje živa.</li>
     </ul>
   </header>
   <main>
     <h2>Izaberi inicijalni pattern</h2>
 
     <ul class="initial-patterns">
-      <li><button class="btn-start">Random</button></li>
-      <li><button>1</button></li>
-      <li><button>2</button></li>
-      <li><button>3</button></li>
-      <li><button>4</button></li>
-      <li><button>5</button></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
     </ul>
     <hr />
     <div class="container">
@@ -46,11 +46,11 @@
       <div class="settings">
         <h2>Podešavanja</h2>
         <br />
-        <label for="x-dimension">Dimenzije x-ose</label>
-        <input type="number" class="dimension" id="x-dimension" value="256" />
+        <label for="x-dimension">Broj redova</label>
+        <input type="number" class="dimension" id="x-dimension" value="256" max="256" min="10" />
         <br />
-        <label for="y-dimension">Dimenzije y-ose</label>
-        <input type="number" class="dimension" id="y-dimension" value="256" />
+        <label for="y-dimension">Broj kolona</label>
+        <input type="number" class="dimension" id="y-dimension" value="256" max="256" min="10" />
         <hr />
         <label for="alive">Boja žive ćelije</label>
         <input type="color" id="alive" value="#000000" />
@@ -60,8 +60,8 @@
         <br />
         <hr />
 
-        <label for="speed">Brzina</label>
-        <input type="number" class="speed" id="speed" Brzinamin="100" step="100" value="400">
+        <label for="speed">Vreme između dve iteracije</label>
+        <input type="number" class="speed" id="speed" min="100" step="100" value="400">
         <span>ms</span>
         <hr />
 

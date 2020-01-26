@@ -1,5 +1,8 @@
-const app = document.querySelector('#canvas');
+const canvas = document.querySelector('#canvas');
+const initialStateElements = document.querySelector('.initial-patterns').children;
+
 const counter = document.querySelector('#counter');
+
 const colorPickerAliveCell = document.getElementById('alive');
 const colorPickerDeadCell = document.getElementById('dead');
 const btnStart = document.querySelector('.btn-start');
@@ -7,11 +10,31 @@ const btnContinue = document.querySelector('.btn-continue');
 const btnStop = document.querySelector('.btn-stop');
 
 let canvasSize = 600;
-app.clientWidth = `${canvasSize}px`;
-app.clientHeight = `${canvasSize}px`;
-app.style.width = `${canvasSize}px`;
-app.style.height = `${canvasSize}px`;
-let ctx = app.getContext('2d');
+canvas.clientWidth = `${canvasSize}px`;
+canvas.clientHeight = `${canvasSize}px`;
+canvas.style.width = `${canvasSize}px`;
+canvas.style.height = `${canvasSize}px`;
+let ctx = canvas.getContext('2d');
+
+const initialStates = [1, 2, 3, 4, 5, 6];
+let choosenState;
+
+let time = 0;
+let interval;
+
+Array.prototype.forEach.call(initialStateElements, (state, index) => {
+  state.addEventListener('click', (e) => {
+    console.log(e.target);
+    choosenState = initialStates[index];
+    time = 0;
+    interval = setInterval(() => {
+      counter.textContent = `${++time}`;
+      loop();
+    }, 400);
+  });
+
+});
+
 let size = 56;
 let SPEED = 400;
 let t = 3000;
@@ -100,19 +123,6 @@ function loop() {
     });
   });
 }
-
-let time = 0;
-let interval;
-
-btnStart.addEventListener('click', () => {
-  if (interval === undefined) {
-    time = 0;
-    interval = setInterval(() => {
-      counter.textContent = `${++time}`;
-      loop();
-    }, 400);
-  }
-});
 
 btnContinue.addEventListener('click', () => {
   if (time !== 0 && interval === undefined) {
