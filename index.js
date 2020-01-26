@@ -71,8 +71,8 @@ let choosenState;
 let time = 0;
 let timeout;
 
-let xSize = 56;
-let ySize = 56;
+let xSize = numOfRowsElem.value;
+let ySize = numOfColsElem.value;
 let speed = 100;
 let t = 3000;
 
@@ -80,7 +80,20 @@ let grid;
 
 speedChangeElem.addEventListener('change', (e) => {
   speed = e.target.value;
-})
+});
+
+
+numOfRowsElem.addEventListener('change', (e) => {
+  clearTimeout(timeout);
+  time = 0;
+  xSize = e.target.value;
+});
+
+numOfColsElem.addEventListener('change', (e) => {
+  clearTimeout(timeout);
+  time = 0;
+  ySize = e.target.value;
+});
 
 Array.prototype.forEach.call(initialStateElements, (state, index) => {
   state.style.background = `url(./images/${index + 1}.png) center no-repeat`;
@@ -108,7 +121,8 @@ Array.prototype.forEach.call(initialStateElements, (state, index) => {
       });
     });
     time = 0;
-    loop();
+    counter.textContent = `${time}`;
+    setTimeout(() => loop(), speed);
   });
 
 });
