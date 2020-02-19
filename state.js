@@ -125,14 +125,15 @@ const playGame = () => {
 
 const updateState = () => {
   currentState.iterationCount++;
+
   for (let row_idx = 0; row_idx < currentState.rows; row_idx++) {
     for (let col_idx = 0; col_idx < currentState.cols; col_idx++) {
       let countLiveNeighbours = 0;
 
       for (let k = -1; k <= 1; k++) {
         for (let l = -1; l <= 1; l++) {
-          let x = col_idx + k;
-          let y = row_idx + l;
+          let x = row_idx + k;
+          let y = col_idx + l;
 
           if (currentState.x_boundary_condition) {
             if (x == -1) x = currentState.rows - 1;
@@ -154,18 +155,18 @@ const updateState = () => {
         }
       }
 
-      if (currentState.grid[col_idx][row_idx]) {
+      if (currentState.grid[row_idx][col_idx]) {
         countLiveNeighbours--;
         if (countLiveNeighbours < 2 || countLiveNeighbours > 3) {
-          futureState[col_idx][row_idx] = false;
+          futureState[row_idx][col_idx] = false;
         } else {
-          futureState[col_idx][row_idx] = true;
+          futureState[row_idx][col_idx] = true;
         }
       } else {
         if (countLiveNeighbours === 3) {
-          futureState[col_idx][row_idx] = true;
+          futureState[row_idx][col_idx] = true;
         } else {
-          futureState[col_idx][row_idx] = false;
+          futureState[row_idx][col_idx] = false;
         }
       }
     }
