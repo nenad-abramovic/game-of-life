@@ -5,24 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Game of Life</title>
+  <title>Гејм оф лајф</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <header>
-    <h1>Conway's Game of Life</h1>
+    <h1>Конвејев гејм оф лајф</h1>
     <hr />
-    <h2>Pravila</h2>
+    <h2>Правила</h2>
     <ul>
-      <li>Svaka živa ćelija okružena sa manje od 2 žive ćelije umire.</li>
-      <li>Svaka živa ćelija okružena sa 2 ili 3 žive ćelije preživljava u sledeću generaciju.</li>
-      <li>Svaka živa ćelija okružena sa više od 3 žive ćelije umire.</li>
-      <li>Mrtva ćelija okružena sa tačno 3 žive ćelije postaje živa.</li>
+      <li>Свака жива ћелија окружена са мање од две живе ћелије умире.</li>
+      <li>Свака жива ћелија окружена са две или три живе ћелије преживљава у следећу генерацију.</li>
+      <li>Свака жива ћелија окружена са више од 3 живе ћелије умире.</li>
+      <li>Мртва ћелија окружена са тачно три живе ћелије постаје жива.</li>
     </ul>
   </header>
   <main>
-    <h2>Izaberi inicijalni pattern</h2>
+    <h2>Изабери почетну конфигурацију</h2>
     <ul class="initial-patterns">
       <li></li>
       <li></li>
@@ -35,62 +35,64 @@
     <div class="container">
       <div>
         <div>
-          <span>Iteracija:</span> <span id="counter">0</span>
-          <button class="btn-stop" title="Zaustavi simulaciju">Zaustavi</button>
-          <button class="btn-continue" title="Nastavi pauziranu simulaciju">Nastavi</button>
+          <span>Итерација:</span> <span id="iteration-counter">0</span>
+          <button class="btn-stop" title="Zaustavi simulaciju">Заустави</button>
+          <button class="btn-continue" title="Nastavi pauziranu simulaciju">Настави</button>
         </div>
         <canvas id="canvas" width="600px" height="600px"></canvas>
       </div>
       <div class="v-line"></div>
       <div class="settings">
-        <h2>Podešavanja</h2>
+        <h2>Подешавања</h2>
+        <div class="break"></div>
         <br />
-        <div class="item-container-dimensions">
-          <label for="x-dimension">Broj redova</label>
-          <input type="number" class="dimension" id="x-dimension" value="64" max="256" min="30" />
-        </div>
-        <div class="item-container-dimensions">
-          <label for="y-dimension">Broj kolona</label>
-          <input type="number" class="dimension" id="y-dimension" value="64" max="256" min="30" />
-        </div>
-        <hr />
-        <div class="item-container">
-          <label for="alive">Boja žive ćelije</label>
-          <input type="color" id="alive" value="#000000" />
-        </div>
-        <div class="item-container">
-          <label for="dead">Boja mrtve ćelije</label>
-          <input type="color" id="dead" value="#FFFFFF" />
-        </div>
-        <hr />
-        <div class="second-container">
-          <label for="speed">Vreme između dve iteracije</label>
-          <input type="number" class="speed" id="speed" min="0" step="10" value="400">
-          <span>ms</span>
+        <div>
+          <div class="item-container-dimensions">
+            <label for="x-dimension">Број редова</label>
+            <input type="number" class="dimension" id="x-dimension" value="64" max="100" min="10" />
+          </div>
+          <div class="item-container-dimensions">
+            <label for="y-dimension">Број колона</label>
+            <input type="number" class="dimension" id="y-dimension" value="64" max="100" min="10" />
+          </div>
+          <div class="break"></div>
+          <div class="item-container">
+            <label for="alive">Боја живих ћелија</label>
+            <input type="color" id="alive" value="#000000" />
+          </div>
+          <div class="item-container">
+            <label for="dead">Боја мртвих ћелија</label>
+            <input type="color" id="dead" value="#FFFFFF" />
+          </div>
         </div>
         <hr />
-        <div class="second-container">
-          <input type="checkbox" id="x-boundary-conditions" checked />
-          <label for="x-boundary-conditions">Periodični granični uslovi duž x-ose</label>
-        </div>
-        <div class="second-container">
-          <input type="checkbox" id="y-boundary-conditions" checked />
-          <label for="y-boundary-conditions">Periodični granični uslovi duž y-ose</label>
+        <div>
+          <div class="second-container">
+            <label for="speed">Време између две итерације</label>
+            <input type="number" class="speed" id="speed" min="0" step="10" value="400">
+            <span>ms</span>
+          </div>
+          <hr />
+          <div class="second-container">
+            <input type="checkbox" id="x-boundary-conditions" checked />
+            <label for="x-boundary-conditions">Периодични гранични услови дуж х-осе</label>
+          </div>
+          <div class="second-container">
+            <input type="checkbox" id="y-boundary-conditions" checked />
+            <label for="y-boundary-conditions">Периодични гранични услови дуж у-осе</label>
+          </div>
         </div>
       </div>
     </div>
   </main>
   <footer>
     <div class="footer-title">
-      <label>Projekat iz predmeta Kompjuterske simulacije u fizici</label>
-      <label>Januar 2020.</label>
-    </div>
-    <div class="footer-names">
-      <label>Profesor: dr Jovan Puzović</label>
-      <label>Student: Sara Ristić, 3154/2015</label>
-    </div>
+      <label>&copy;абрамовић ненад 2020</label>
+
   </footer>
-  <script src="index.js"></script>
+  <script src="./settings.js"></script>
+  <script src="./state.js"></script>
+  <script src="./game.js"></script>
 </body>
 
 </html>
