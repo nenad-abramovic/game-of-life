@@ -20,13 +20,13 @@ const currentState = {
   dead_cell_color: colorPickerDeadCell.defaultValue
 };
 
-let futureState = Array(currentState.rows).fill([]).map(() => {
-  return Array(currentState.cols).fill(false)
-});
+let futureState = Array(currentState.rows).fill([]).map(() =>
+  Array(currentState.cols).fill(false)
+);
 
-currentState.grid = Array(currentState.rows).fill([]).map(() => {
-  return Array(currentState.cols).fill(false)
-});
+currentState.grid = Array(currentState.rows).fill([]).map(() =>
+  Array(currentState.cols).fill(false)
+);
 
 const subscribers = {
   initializeGrid: [],
@@ -47,18 +47,26 @@ const updateGridSize = ({ rows, cols }) => {
   currentState.rows = parseInt(rows, 10);
   currentState.cols = parseInt(cols, 10);
 
-  futureState = Array(currentState.rows).fill([]).map(() => {
-    return Array(currentState.cols).fill(false)
-  });
+  futureState = Array(currentState.rows).fill([]).map(() =>
+    Array(currentState.cols).fill(false)
+  );
 
   currentState.grid.forEach((row, row_idx) =>
-    row.forEach((cell, col_idx) =>
-      futureState[row_idx, col_idx] = cell
+    row.forEach((cell, col_idx) => {
+      if ((row_idx < futureState.length) && (col_idx < futureState[row_idx].length)) {
+        futureState[row_idx][col_idx] = cell
+      }
+    }
     ));
 
-  currentState.grid = Array(currentState.rows).fill([]).map(() => {
-    return Array(currentState.cols).fill(false)
-  });
+  currentState.grid = Array(currentState.rows).fill([]).map(() =>
+    Array(currentState.cols).fill(false)
+  );
+
+  futureState.forEach((row, row_idx) =>
+    row.forEach((cell, col_idx) =>
+      currentState.grid[row_idx][col_idx] = cell
+    ));
 
   subscribers.updateGridSize.forEach(x => x());
 };
